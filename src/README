@@ -1,0 +1,88 @@
+Name: ALAY DILIPBHAI SHAH
+USC NetID: 4038948819
+CS 455 PA4
+Spring 2019
+
+----------------------------------------------
+CERTIFY IT'S YOUR WORK
+
+"I certify that the work submitted for this assignment does not
+violate USC's student conduct code.  In particular, the work is my
+own, not a collaboration, and does not involve code created by other
+people, except for the the resources explicitly mentioned in the CS 455
+Course Syllabus.  And I did not share my solution or parts of it with
+other students in the course."
+
+Initial below to "sign" the above statement:
+ALAY DILIPBHAI SHAH 
+
+----------------------------------------------
+ACKNOWLEDGE ANY OUTSIDE SOURCES
+
+List here any code you submitted for this assignment that was written
+with significant help of a course staff member, or code used from the
+textbook.  Be specific about what methods or algorithms are involved,
+and what sections of the textbook are involved (if applicable): [you do
+not need to list any of the code that we wrote for the assignment,
+i.e., the contents of the starter files for the assignment]
+
+Took some inspiration from some outside article which was available on the web for coding the "defensiveCopy()" method present in the AnagramDictionary Class. 
+
+
+----------------------------------------------
+KNOWN BUGS or LIMITATIONS:
+
+To the best of my knowledge, No!
+
+----------------------------------------------
+DESCRIPTION OF YOUR CLASS DESIGN AND ALGORITHMS AND DATA STRUCTURES USED:
+
+The Approach used for processing the dictionary is to organize the words by the set of letters each one contains (this set is actually a multiset, because letters can appear more than once in a word; the rack itself is also a multiset). 
+Then for each rack we generate all the subsets of that multiset of letters, and for each subset add all the words from the dictionary that have exactly the same elements as that subset. 
+This is slower to process the dictionary, but once we do this processing, it's faster to process each rack.
+
+The above approach was implemented as follows:
+
+-- First create an ID for the words present in the dictionary (Same set of letters will have the same Id).
+
+-- Next, we populate a HashMap known as processed dictionary by adding a new entry where key is the id, and value is the ArrayList of all the words that have the same Id.
+
+-- The Rack class has a method to return an array list of all the possible subsets of any given word. 
+
+-- Once we have a processed Dictionary and all the subsets of the word on the rack, we can get all the anagrams for any given possible word formation present in the subset by just asking the above HashMap.
+
+-- Then, the score table stores the information about the values of letters in an int[] and contains a method for computing scores of any given word, which can be used to calculate scores of all word formations generated above.
+
+-- Finally, the ScoreGenerator class integrates all the functionality of above classes to print a list of possible word formation and their scores.
+
+-- And the WordFinder Program contains the main program to assemble all the classes and makes the program work.
+
+
+The Class Design is related to the above stated approach as follows: 
+
+CLASS	 										RESPONSIBILITY		 													DATA STRUCTURE							COLLABORATION:
+-----											--------------															--------------							--------------			
+AnagramDictionary					processes the dictionary file, and gets all anagrams for any given word				HashMap<String, ArrayList<String>>		None
+
+Rack								processes the word to get all the possible subsets of any given word               	HashMap<Character, Integer>				None
+
+ScoreTable						Keeps information about values of letters, and computes score of any given word 		int[]							    	None
+
+ScoreGenerator					Integrates the necessary functionality of all the above classes to 						TreeMap<Integer, ArrayList<String>>		AnagramDictionary,
+								get all possible word formations along with their scores for any given word														ScoreTable, Rack
+								
+WordFinder						 main() program to assemble all the classes and makes the program work					None									ScoreGenerator, ScoreTable, 
+																																								AnagramDictionary, Rack
+																																								
+The individual description and working of each class and its data structure is described in detail as comments in the respective class itself.																																								
+																																																																												
+----------------------------------------------
+ANY OTHER NOTES FOR THE GRADER:
+
+Thank You!
+
+
+
+
+
+
